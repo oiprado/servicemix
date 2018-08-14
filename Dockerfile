@@ -18,7 +18,7 @@ RUN wget http://apache.uniminuto.edu/mina/ftpserver/${FTP_SERVER_VERSION}/dist/a
     rm -f apache-ftpserver-${FTP_SERVER_VERSION}.zip; \
     ln -s /opt/apache-ftpserver-${FTP_SERVER_VERSION} /opt/ftpserver; \
 
-WORKDIR "/apache-ftpserver-${FTP_SERVER_VERSION}"
+#WORKDIR "/apache-ftpserver-${FTP_SERVER_VERSION}"
 
 ADD ftpd.xml ftpd.xml
 
