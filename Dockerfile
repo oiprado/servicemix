@@ -7,10 +7,18 @@ ENV SERVICEMIX_VERSION_MINOR=0
 ENV SERVICEMIX_VERSION_PATCH=1
 ENV SERVICEMIX_VERSION=${SERVICEMIX_VERSION_MAJOR}.${SERVICEMIX_VERSION_MINOR}.${SERVICEMIX_VERSION_PATCH}
 
-#download the Apache FTP server & extract
-RUN apk add --update tar && \wget http://apache.osuosl.org/mina/ftpserver/1.1.1/dist/apache-ftpserver-1.1.1.tar.gz \&& tar -xzvf apache-ftpserver-1.1.1.tar.gz 
+ENV FTP_SERVER_VERSION_MAJOR=7
+ENV FTP_SERVER_VERSION_MINOR=0
+ENV FTP_SERVER_VERSION_PATCH=1
+ENV FTP_SERVER_VERSION=${FTP_SERVER_VERSION_MAJOR}.${FTP_SERVER_VERSION_MINOR}.${FTP_SERVER_VERSION_PATCH}
 
-WORKDIR "/apache-ftpserver-1.1.1"
+#download the Apache FTP server & extract
+RUN wget http://apache.uniminuto.edu/mina/ftpserver/1.1.1/dist/apache-ftpserver-${FTP_SERVER_VERSION}.zip ; \
+    unzip -d /opt apache-ftpserver-${FTP_SERVER_VERSION}.zip; \
+    rm -f apache-ftpserver-${FTP_SERVER_VERSION}.zip; \
+    ln -s /opt/apache-ftpserver-${FTP_SERVER_VERSION}.zip /opt/ftpserver; \
+
+WORKDIR "/apache-ftpserver-${FTP_SERVER_VERSION}"
 
 ADD ftpd.xml ftpd.xml
 
@@ -20,7 +28,7 @@ RUN wget http://www-us.apache.org/dist/servicemix/servicemix-${SERVICEMIX_VERSIO
     rm -f apache-servicemix-${SERVICEMIX_VERSION}.zip; \
     ln -s /opt/apache-servicemix-${SERVICEMIX_VERSION} /opt/servicemix; \
     mkdir /deploy; \
-    sed -i 's/^\(felix\.fileinstall\.dir\s*=\s*\).*$/\1\/deploy/' /opt/servicemix/etc/org.apache.felix.fileinstall-deploy.cfg; \
+    sed -i 's/^\(felix\.fileinstall\.dir\s*=\s*\).*$/\1\/deploy/' /opt/servicemix/etc/org.apache.fe -s lix.fileinstall-deploy.cfg; \
     sed '$d' /opt/servicemix/etc/user.properties; \
     echo 'admin = admin, clave,_g_:admingroup' >> /opt/servicemix/etc/user.properties
 VOLUME ["/deploy"]
