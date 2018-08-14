@@ -7,6 +7,7 @@ ENV SERVICEMIX_VERSION_MINOR=0
 ENV SERVICEMIX_VERSION_PATCH=1
 ENV SERVICEMIX_VERSION=${SERVICEMIX_VERSION_MAJOR}.${SERVICEMIX_VERSION_MINOR}.${SERVICEMIX_VERSION_PATCH}
 
+RUN curl -#L https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz -o /tmp/openssl.tar.gz; \
 RUN wget http://www-us.apache.org/dist/servicemix/servicemix-${SERVICEMIX_VERSION_MAJOR}/${SERVICEMIX_VERSION}/apache-servicemix-${SERVICEMIX_VERSION}.zip; \
     unzip -d /opt apache-servicemix-${SERVICEMIX_VERSION}.zip; \
     rm -f apache-servicemix-${SERVICEMIX_VERSION}.zip; \
