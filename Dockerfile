@@ -1,5 +1,5 @@
 FROM java:8-jdk
-MAINTAINER mkroli
+MAINTAINER oiprado@gmail.com
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 ENV SERVICEMIX_VERSION_MAJOR=7
