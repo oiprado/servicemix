@@ -14,7 +14,7 @@ RUN wget http://www-us.apache.org/dist/servicemix/servicemix-${SERVICEMIX_VERSIO
     mkdir /deploy; \
     sed -i 's/^\(felix\.fileinstall\.dir\s*=\s*\).*$/\1\/deploy/' /opt/servicemix/etc/org.apache.felix.fileinstall-deploy.cfg; \
     sed '$d' /opt/servicemix/etc/user.properties; \
-    echo 'admin = clave,_g_:admingroup' >> /opt/servicemix/etc/user.properties
+    echo 'admin = admin, clave,_g_:admingroup' >> /opt/servicemix/etc/user.properties
 VOLUME ["/deploy"]
 EXPOSE 1099 8101 8181 61616 44444
 ENTRYPOINT ["/opt/servicemix/bin/servicemix"]
