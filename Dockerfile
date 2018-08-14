@@ -13,10 +13,10 @@ ENV FTP_SERVER_VERSION_PATCH=1
 ENV FTP_SERVER_VERSION=${FTP_SERVER_VERSION_MAJOR}.${FTP_SERVER_VERSION_MINOR}.${FTP_SERVER_VERSION_PATCH}
 
 #download the Apache FTP server & extract
-RUN wget http://apache.uniminuto.edu/mina/ftpserver/1.1.1/dist/apache-ftpserver-${FTP_SERVER_VERSION}.zip ; \
+RUN wget http://apache.uniminuto.edu/mina/ftpserver/${FTP_SERVER_VERSION}/dist/apache-ftpserver-${FTP_SERVER_VERSION}.zip ; \
     unzip -d /opt apache-ftpserver-${FTP_SERVER_VERSION}.zip; \
     rm -f apache-ftpserver-${FTP_SERVER_VERSION}.zip; \
-    ln -s /opt/apache-ftpserver-${FTP_SERVER_VERSION}.zip /opt/ftpserver; \
+    ln -s /opt/apache-ftpserver-${FTP_SERVER_VERSION} /opt/ftpserver; \
 
 WORKDIR "/apache-ftpserver-${FTP_SERVER_VERSION}"
 
